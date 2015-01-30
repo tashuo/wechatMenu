@@ -66,8 +66,9 @@
                         $menu = self::getMenu();
 
                         require_once('File.class.php');
-                        $path = '../../menus/'.date('YmdHis', time()).'.txt';
-                        $_SESSION['backup_path'] = $path;
+                        $filename = date('YmdHis', time()).'.txt';
+                        $path = '../../menus/'.$filename;
+                        $_SESSION['backup_filename'] = $filename;
                         return File::write($path, $menu);
             }
 

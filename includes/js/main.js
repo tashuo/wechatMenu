@@ -117,6 +117,24 @@ $(document).ready(function(){
 		});
 	});
 
+	//回滚菜单
+	$('#backupMenuBtn').click(function(){
+		$(this).text('正在回滚')
+		$(this).attr('disabled', 'disabled')
+		$.post(
+			'includes/ajax/ajax_rollbackMenu.php',
+			function(data){
+				data = eval('('+data+')')
+				if(data.errcode == 0){
+					$('#backupMenuBtn').text('回滚完成')
+				}else{
+					alert('回滚失败')
+					$('#backupMenuBtn').text('回滚菜单')
+					$('#backupMenuBtn').removeAttr('disabled')
+				}
+			})
+	})
+
 })
 
 function initStatus(){
